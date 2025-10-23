@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AulaController;
+use App\Http\Controllers\EdificioController;
 use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
@@ -14,6 +16,8 @@ Route::get('/bienvenida', function () {
 })->name('bienvenida');
 
 Route::resource('tarea', TareaController::class);//->middleware('auth');
+Route::resource('aula', AulaController::class)->middleware('auth');
+Route::resource('edificio', EdificioController::class)->middleware('auth');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

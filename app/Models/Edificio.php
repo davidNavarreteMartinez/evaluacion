@@ -9,4 +9,9 @@ class Edificio extends Model
 {
     /** @use HasFactory<\Database\Factories\EdificioFactory> */
     use HasFactory;
+
+    public function aulas()
+    {
+        return $this->hasMany(Aula::class);
+    }
 }
