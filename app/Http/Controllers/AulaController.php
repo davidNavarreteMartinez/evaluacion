@@ -31,11 +31,13 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        $aula = new Aula();
-        $aula->edificio_id = $request->edificio_id;
-        $aula->numero = $request->numero;
-        $aula->capacidad = $request->capacidad;
-        $aula->save();
+        $aula = Aula::create($request->all());
+
+        // $aula = new Aula();
+        // $aula->edificio_id = $request->edificio_id;
+        // $aula->numero = $request->numero;
+        // $aula->capacidad = $request->capacidad;
+        // $aula->save();
 
         return redirect()->route('edificio.show', $aula->edificio_id);
     }
@@ -53,7 +55,10 @@ class AulaController extends Controller
      */
     public function edit(Aula $aula)
     {
-        //
+        return view('aulas.aula-edit')->with([
+            'aula' => $aula,
+            'edificios' => Edificio::all(),
+        ]);
     }
 
     /**
@@ -61,7 +66,9 @@ class AulaController extends Controller
      */
     public function update(Request $request, Aula $aula)
     {
-        //
+        $aula->update($request->all());
+
+        return redirect()->route('edificio.show', $aula->edificio_id);
     }
 
     /**
