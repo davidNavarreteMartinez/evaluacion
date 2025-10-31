@@ -15,6 +15,13 @@ class AulaController extends Controller
     {
         //
     }
+    protected $fillable = ['nombre', 'capacidad', 'edificio_id'];
+
+    public function edificio()
+    {
+        return $this->belongsTo(Edificio::class);
+    }
+
 
     /**
      * Show the form for creating a new resource.

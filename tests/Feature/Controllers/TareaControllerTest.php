@@ -1,8 +1,16 @@
 <?php
 
 use App\Models\Tarea;
-
+use App\Models\User;
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->user = \App\Models\User::factory()->create();
+    $this->actingAs($this->user);
+});
 
 test('muestra listado de tareas', function () {
     $tarea = Tarea::factory()->create();
